@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: "API de Clasificación y Detección de Imágenes"
+  version: "1.0.0"
+  description: "API REST para la clasificación de imágenes y detección de fracturas usando modelos de Deep Learning desarrollados para el proyecto."
+
+servers:
+  - url: "http://localhost:8080/api"
+    description: "Servidor local de desarrollo"
+
+tags:
+  - name: Modelo clasificación
+    description: Acceso a la clasificación de imágenes mediante la red residual entrenada.
+
+  - name: Modelo YOLO
+    description: Acceso a la detección de fracturas mediante el modelo YOLO entrenado.
+
+paths:
+  /classify-image:
+    post:
+      operationId: "functions.classify_image"
+      tags:
+        - Modelo clasificación
+      summary: "Clasificar una imagen"
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: "Imagen clasificada con éxito"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  classification:
+                    type: string
+                    description: "La clase asignada a la imagen"
+                  confidence:
+                    type: string
+                    description: "La probabilidad o confianza de la prediccion del modelo"
+
+  /classify-multiple-images:
+    post:
+      operationId: "functions.classify_multiple_images"
+      tags:
+        - Modelo clasificación
+      summary: "Clasificar varias imágenes"
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: "Imágenes clasificadas con éxito"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+                    description: "Diccionario de resultados de clasificación de imágenes"
+                    additionalProperties:
+                      type: object
+                      properties:
+                        classification:
+                          type: string
+                          description: "La clase asignada a la imagen"
+                        confidence:
+                          type: string
+                          description: "La confianza de la clasificación"
+
+  /detect-fracture:
+    post:
+      operationId: "functions.detect_fracture"
+      tags:
+        - Modelo YOLO
+      summary: "Identificar fractura en una imagen"
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: "Imagen de rayos X para detección de fracturas"
+      responses:
+        '200':
+          description: "Fractura identificada con éxito"
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+                description: "Imagen con la detección de fractura marcada"
+
+  /fine-tune-classifier:
+    post:
+      operationId: "functions.fine_tune_endpoint"
+      tags:
+        - Modelo clasificación
+      summary: "Reentrenar modelo de clasificación"
+      responses:
+        '200':
+          description: "Modelo reentrenado con éxito"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "Estado del reentrenamiento"
+                  metrics:
+                    type: object
+                    properties:
+                      f1_score:
+                        type: number
+                        format: float
+                      recall_score:
+                        type: number
+                        format: float
+                      precision_score:
+                        type: number
+                        format: float
+                      accuracy_score:
+                        type: number
+                        format: float
+        '500':
+          description: "Error en el proceso de reentrenamiento"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+
+components:
+  schemas:
+    ClassificationResponse:
+      type: object
+      properties:
+        classification:
+          type: string
+    DetectionResponse:
+      type: object
+      properties:
+        detection:
+          type: string
+        image:
+          type: string
+          format: binary
+    FineTuneResponse:
+      type: object
+      properties:
+        status:
+          type: string
