@@ -6,11 +6,12 @@ En este proyecto, se lleva a cabo el desarrollo completo de un modelo de visión
 
 Previo al inicio del proyecto, se han definido una serie de hipótesis que se tratarán de refutar una vez contemos con los diferentes modelos entrenados, con el objetivo específico de tratar de responder a las hipótesis en cuestión.
 
+El fichero REQUIREMENTS.txt incluye todas las libreras que se utilizan en el proyecto, incluyendo dentro de los ficheros Jupyter Notebook.
 
 ## CONJUNTO DE DATOS
 
 El conjunto de datos que voy a utilizar lo he obtenido de Kaggle, a través de una publicación del usuario MADUSHANI RODRIGO, al que es posible acceder a través del siguiente enlace:
-https://www.kaggle.com/datasets/bmadushanirodrigo/fracture-multi-region-x-ray-data .
+<https://www.kaggle.com/datasets/bmadushanirodrigo/fracture-multi-region-x-ray-data>.
 
 Tal y como indica el propietario del dataset en la publicación del mismo, el conjunto de datos con el que vamos a trabajar consta de 3 subconjuntos de imágenes, donde contamos con:
 
@@ -19,7 +20,6 @@ Tal y como indica el propietario del dataset en la publicación del mismo, el co
 * 506 imágenes para el conjunto de prueba.
 
 En total, el conjunto de datos cuenta con un total de 10,580 imágenes de radiografías, lo cual es una cantidad decente de partida para plantear el desarrollo de un modelo de visión artificial.
-
 
 ## HIPÓTESIS INICIALES
 
@@ -41,16 +41,13 @@ A continuación, se muestra el listado de hipótesis que se han definido para es
 
 * **El preprocesamiento de las imágenes, como el ajuste de contraste, la normalización y el aumento de datos, mejorará la precisión del modelo.**
 
-
 ## EXTRAS
 
 Junto con el modelo que se desplegará a producción a través del desarrollo de una API REST, se va a desarrollar un modelo YOLO de detección de entidades. Este modelo será accesible a través de una determirada ruta de la URI de la API con la que podremos interactuar con el modelo, y nos permitirá generar una imagen en donde se aprecia una determinada rotura, para una imagen que el modelo clasifique de manera positiva.
 
-
 ## Estructura del proyecto
 
 A continuación, se incluye una breve descripción de la estructura del proyecto, y qué contiene cada directorio o archivo importante.
-
 
 ## Cómo Usar
 
@@ -63,10 +60,10 @@ Para poder hacer uso de este proyecto, simplemente debes seguir los siguientes p
 * Para probar el modelo en producción, ejecuta el fichero "**run.py**" para inicializar la API REST. Interactua con el modelo navegando a través de las posibles rutas de la URI de la API.
 
 ## Contacto
+
 Si tienes preguntas, sugerencias o te gustaría contribuir al proyecto, me encantaría escuchar tus ideas. Puedes contactar conmigo a traves de las siguientes maneras:
 
-* ***Correo Electrónico***: padishdev@duck.com
-
+* ***Correo Electrónico***: <padishdev@duck.com>
 * ***GitHub***: Si encuentras algun problema, o ves conveniente aplicar alguna modificacion, no dudes en abrir un issue. También puedes contribuir directamente mediante pull requests.
 
-* ***LinkedIn***: https://www.linkedin.com/in/david-padilla-mu%C3%B1oz-52126725a/
+* ***LinkedIn***: <https://www.linkedin.com/in/david-padilla-mu%C3%B1oz-52126725a/>
